@@ -1,9 +1,9 @@
 export {
   LEVEL_NAMES,
   LEVELS,
-} from './levels'
+} from './app/levels'
 
 export {
   LogManager,
   getLogManager,
-} from './log-manager'
+} from './app/log-manager'

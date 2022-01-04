@@ -26,6 +26,7 @@ module.exports = {
     'eqeqeq': 'off',
     'no-bitwise': 'off',
     'no-mixed-operators': 'off',
+    'no-underscore-dangle': 'off',
   },
   env: {
     node: true,

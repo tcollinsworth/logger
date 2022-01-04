@@ -1,9 +1,9 @@
 import test from 'ava'
 import delay from 'delay'
 
-import { LogManager } from '../log-manager'
+import { LogManager } from '../app/log-manager'
 
-test('perf', async(t) => {
+test('perf', async (t) => {
   const lm = new LogManager('test')
   const log = lm.getLogger('foo')
   // console.log(lm.getLoggerLevel('foo'))
@@ -15,7 +15,7 @@ test('perf', async(t) => {
     log.info('foo', { hello: 'world' }, 'bar')
     ++i
   }
-  t.truthy(60000 / i < 0.1)
+  t.truthy(60000 / i < 0.2)
   await delay(5000)
   log.info(i, 60000 / i)
   await delay(100)
