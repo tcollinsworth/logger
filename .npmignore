@@ -1,0 +1,6 @@
+*.npmrc
+.idea
+*.txt
+__tests__
+.eslint*
+.npmignore

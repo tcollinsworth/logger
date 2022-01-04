@@ -1,0 +1,42 @@
+{
+  "name": "@tcollinsworth/logger",
+  "version": "0.0.1",
+  "description": "fast dynamic json logger, which logs all args and context, including errors/nested errors in any position with stacktraces, and more",
+  "main": "index.js",
+  "scripts": {
+    "watchUnit": "NODE_ENV=DEBUG ava --fail-fast -v **/__tests__/**/*test*.js --watch",
+    "ava": "ava",
+    "test": "npm run ava -timeout=2m",
+    "lint": "eslint . --ext=js --ext=js --fix",
+    "watchLint": "esw . --ext=js --ext js --fix --color -w"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "esm": {
+    "force": true,
+    "mode": "auto"
+  },
+  "keywords": [
+    "logger",
+    "dynamic",
+    "json",
+    "fast"
+  ],
+  "author": "Troy Collinsworth",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "delay": "^5.0.0",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-watch": "^8.0.0",
+    "esm": "^3.2.25",
+    "esm-wallaby": "^3.2.25",
+    "ignore-styles": "^5.0.1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

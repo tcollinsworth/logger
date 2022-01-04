@@ -1,0 +1,5 @@
+node_modules/*
+public/*
+app/dirname.js
+www/dist/*
+*.txt

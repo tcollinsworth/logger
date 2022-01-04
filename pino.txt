@@ -1,0 +1,19 @@
+below module is a child logger property logged for all children
+
+pino/file
+single-line json
+
+{"level":"info","time":1641238457960,"pid":27831,"hostname":"troy-x360","module":"eod-historical-data","indexStocksMissingMetadata":[],"eodMissing":[],"yahooMissing":[],"propertiesMissing":{"eod":{},"yahoo":{}}}
+
+
+Pretty
+epocMs, logLevel, pid, host, module, message
+[1641236552539] INFO (25228 on troy-x360):
+    module: "eod-historical-data"
+    indexStocksMissingMetadata: []
+    eodMissing: []
+    yahooMissing: []
+    propertiesMissing: {
+      "eod": {},
+      "yahoo": {}
+    }
