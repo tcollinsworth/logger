@@ -17,13 +17,13 @@ const optionsDefault = {
   colorize: false,
   logFormatFunctions: [ // or rearrange them and add custom function(s)
     { level: levelNameFn }, // levelNumberFn
-    { levelNo: levelNumberFn }, // levelNumberFn
+    // { levelNo: levelNumberFn }, // levelNumberFn
     { time: timeEpocFn }, // timeEpocFn, timeIsoZFn
-    { timeIso: timeIsoZFn }, // timeEpocFn, timeIsoZFn
-    { pid: pidFn },
-    { host: hostFn },
+    // { timeIso: timeIsoZFn }, // timeEpocFn, timeIsoZFn
+    // { pid: pidFn },
+    // { host: hostFn },
     { msg: msgFn },
-    { context: contextFn },
+    // { context: contextFn },
   ],
   // recommend targeted JSON property redaction prior to serialization
   preSerializationFunctions: [],
@@ -32,26 +32,27 @@ const optionsDefault = {
   stream: process.stdout,
 }
 
-function getOptions(options) {
-  const defaultOptions = JSON.parse(JSON.stringify(optionsDefault))
+function getOptions(optionsProvided) {
+  const options = JSON.parse(JSON.stringify(optionsDefault))
 
-  // TODO merge defaultOptions into options
-  defaultOptions.logFormatFunctions = []
-  defaultOptions.logFormatFunctions.forEach((f) => options.logFormatFunctions.push(f))
-  defaultOptions.preSerializationFunctions = []
-  defaultOptions.preSerializationFunctions.forEach((f) => options.preSerializationFunctions.push(f))
-  defaultOptions.postSerializationFunctions = []
-  defaultOptions.postSerializationFunctions.forEach((f) => options.postSerializationFunctions.push(f))
-  options.stream = defaultOptions.stream
+  // TODO merge optionsProvided into options
+  options.logFormatFunctions = []
+  optionsDefault.logFormatFunctions.forEach((f) => options.logFormatFunctions.push(f))
+  options.preSerializationFunctions = []
+  optionsDefault.preSerializationFunctions.forEach((f) => options.preSerializationFunctions.push(f))
+  options.postSerializationFunctions = []
+  optionsDefault.postSerializationFunctions.forEach((f) => options.postSerializationFunctions.push(f))
+  options.stream = optionsDefault.stream
+  return options
 }
 
 // TODO add default options and merge overrides
 // TODO add ability to change stream
 export class LogManager {
-  constructor(options = getOptions(options)) {
+  constructor(options) {
+    this.options = getOptions(options)
     this.loggers = {}
-    this.options = options
-    this.options.defaulLevelNumber = LEVEL_NAMES[this.options.levelName]
+    this.options.defaulLevelNumber = LEVEL_NAMES[this.options.defaultLevelName]
   }
 
   getLogFormatFunctions() {

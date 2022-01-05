@@ -57,35 +57,28 @@ export class LoggerImpl {
   _log(...args) {
     // console.log(LEVELS[arguments[0]], new Date().toISOString() , ...arguments[1])
 
-    const results = []
+    const logProps = {}
     this.logManager.getLogFormatFunctions().reduce((prevVal, curVal) => {
-      prevVal.push(curVal(args))
+      const entry = Object.entries(curVal)[0]
+      const result = entry[1](entry[0], args)
+      const [name, value] = result
+      prevVal[name] = value
       return prevVal
-    }, results)
+    }, logProps)
 
-    let time
-    if (this.logManager.isTimeFormatIso()) {
-      time = new Date().toISOString()
-    } else {
-      time = new Date().getTime()
-    }
-
-    const levelNumber = args[0]
+    // console.log(logProps)
 
     let outputStr
     if (this.logManager.isFormatJson()) {
-      const output = {
-        level: LEVELS[levelNumber],
-        time,
-        msg: [...args[1]],
-      }
-
-      outputStr = JSON.stringify(output)
+      outputStr = JSON.stringify(logProps)
     } else {
-      outputStr = `${LEVELS[levelNumber]}, ${time}, ${JSON.stringify(args[1])}`
+      // TODO need format options to optionally include name and comma
+      // outputStr = `${LEVELS[levelNumber]}, ${time}, ${JSON.stringify(args[1])}`
+      outputStr = `${logProps.level} ${logProps.time} ${JSON.stringify(logProps.msg)}`
     }
 
     if (this.logManager.isColorize()) {
+      const levelNumber = args[0]
       if (levelNumber >= 50) {
         outputStr = chalk.red(outputStr)
       } else if (levelNumber === 40) {
