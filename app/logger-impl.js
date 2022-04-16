@@ -59,14 +59,16 @@ export class LoggerImpl {
 
     const logProps = {}
     this.logManager.getLogFormatFunctions().reduce((prevVal, curVal) => {
+      // console.log('curVal', curVal)
       const entry = Object.entries(curVal)[0]
+      // console.log('entry', entry)
       const result = entry[1](entry[0], args)
       const [name, value] = result
       prevVal[name] = value
       return prevVal
     }, logProps)
 
-    // console.log(logProps)
+    // console.log('logProps', logProps)
 
     let outputStr
     if (this.logManager.isFormatJson()) {

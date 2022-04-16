@@ -14,11 +14,11 @@ test('perf', async (t) => {
   const stopTs = new Date().getTime() + runTime
   let i = 0
   while (new Date().getTime() < stopTs) {
-    log.error('foo', { hello: 'world' }, 'bar')
+    log.error('fubar', { hello: 'world' }, 'bar')
     ++i
   }
-  t.truthy(runTime / i < 0.2)
-  await delay(5000)
-  console.log(i, 60000 / i)
+  t.truthy(runTime / i < 0.2) // < 200 uS
+  await delay(runTime * 3)
+  console.log(i, 60 * runTime / i, 'ms')
   await delay(100)
 })

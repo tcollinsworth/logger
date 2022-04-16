@@ -14,7 +14,7 @@ const optionsDefault = {
   name: 'default',
   defaultLevelName: DEFAULT_LEVEL_NAME,
   formatJson: true,
-  colorize: false,
+  colorize: false, // use false for production remote log aggregation, true for local debugging
   logFormatFunctions: [ // or rearrange them and add custom function(s)
     { level: levelNameFn }, // levelNumberFn
     // { levelNo: levelNumberFn }, // levelNumberFn
@@ -65,6 +65,10 @@ export class LogManager {
 
   isColorize() {
     return this.options.colorize
+  }
+
+  getLogFn() {
+    return this.getLogger.bind(this)
   }
 
   getLogger(name, levelName = DEFAULT_LEVEL_NAME) {

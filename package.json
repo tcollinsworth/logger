@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watchUnit": "NODE_ENV=DEBUG ava --fail-fast -v **/__tests__/**/*test*.js --watch",
-    "ava": "ava",
-    "test": "npm run ava -timeout=2m",
+    "test": "ava",
+    "perfTest": "ava --config=ava.perf-test.config.cjs -timeout=2m",
     "lint": "eslint . --ext=js --ext=js --fix",
     "watchLint": "esw . --ext=js --ext js --fix --color -w"
   },
@@ -28,12 +28,12 @@
   "devDependencies": {
     "ava": "^3.15.0",
     "delay": "^5.0.0",
-    "eslint": "^8.6.0",
+    "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-watch": "^8.0.0",
     "esm": "^3.2.25",
-    "esm-wallaby": "^3.2.25",
+    "esm-wallaby": "^3.2.26",
     "ignore-styles": "^5.0.1"
   },
   "dependencies": {
